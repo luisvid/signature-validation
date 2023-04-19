@@ -1,10 +1,10 @@
 const axios = require("axios");
 const fs = require("fs");
 
-// get gamebuild URL (getDownloadURL V2)
+// Get friends list for logged in user (jwt) from Elxir-Friends service
 // first login with OTP: get transactionId and userCode
 // second OTP login verify: get JWT token
-// third get gamebuild URL: uses new middleware Verify API Key JWT token
+// third get Friends List: uses new middleware Verify API Key JWT token
 
 async function main() {
   // read the api key from a file
@@ -82,25 +82,24 @@ async function main() {
     });
 
   //
-  // get gamebuild URL (getDownloadURL V2)
+  // get friends list
   //
-  let configGamebuildURL = {
+  let configGetFriendsList = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "http://localhost:4101/gamebuild/0d3a01eb-73dd-4f7b-a81f-91aa0e7420c6/WIN",
+    url: 'http://localhost:4101/sdk/v2/friends/',
     headers: {
       "x-api-key": apiKey,
       Authorization: "Bearer " + token,
-      Cookie:
-        "connect.sid=s%3ASu8dqwCPDZSzNSusQN064bBgxnruUEoT.Eexg59UQo%2B8Wk%2B21PmSa%2BobjWSqtBeDsT8ibUu0%2BJrg",
+      Cookie: 'connect.sid=s%3AoLrdUK9hOkM_-a2FesosZ5ALmqM4KWR1.SWNfXu5G9hVAffSKCt794Yco8LNT6X1UphOXFJvQbjA'
     },
   };
 
   axios
-    .request(configGamebuildURL)
+    .request(configGetFriendsList)
     .then((response) => {
       console.log(
-        "get gamebuild URL \n",
+        "\n\n\n\nget friends list",
         JSON.stringify(response.data, null, 4)
       );
     })

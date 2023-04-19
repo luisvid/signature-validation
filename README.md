@@ -16,7 +16,8 @@ This app exposes the POST endpoint `/validate` that receives `data`, `public-Key
 
 ### Keys
 
-The `keys` folder contains the private and public keys used to sign the data file
+The `keys` folder contains the private and public keys used to sign the data file (data.txt).
+The api_key.txt file with the apit key needed to call the Elixir-Backend endpoints is also stored here.
 
 To sign data with a public key in macOS, you can use the OpenSSL command-line tool. Here are the steps:
 
