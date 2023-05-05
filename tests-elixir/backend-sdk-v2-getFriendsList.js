@@ -8,7 +8,7 @@ const fs = require("fs");
 
 async function main() {
   // read the api key from a file
-  const apiKey = fs.readFileSync("./keys/api_key.txt", "utf8");
+  const apiKey = fs.readFileSync("../keys/api_key.txt", "utf8");
   let transactionId = "";
   let code = "";
   let token = "";
@@ -37,7 +37,7 @@ async function main() {
     .request(configLogin)
     .then((response) => {
       console.log(
-        "OTP Login Request: \n",
+        "\n\nOTP Login Request:\n\n",
         JSON.stringify(response.data, null, 4)
       );
       transactionId = response.data.data.transactionId;
@@ -72,7 +72,7 @@ async function main() {
     .request(configVerify)
     .then((response) => {
       console.log(
-        "OTP Login Verify \n",
+        "\n\nOTP Login Verify\n\n",
         JSON.stringify(response.data, null, 4)
       );
       token = response.data.data.token;
@@ -99,7 +99,7 @@ async function main() {
     .request(configGetFriendsList)
     .then((response) => {
       console.log(
-        "\n\n\n\nget friends list",
+        "\n\nget friends list",
         JSON.stringify(response.data, null, 4)
       );
     })

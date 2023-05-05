@@ -3,6 +3,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 
 // this test call the verifySignature function in the elixir auth
+// endpoint POST /signature-verify
 
 // actual endpoint
 const url = "http://localhost:4002/sdk/auth/v2/signin/signature-verify";
@@ -11,7 +12,7 @@ const url = "http://localhost:4002/sdk/auth/v2/signin/signature-verify";
 const data = "Hello, world!";
 // specify the private key and passphrase
 const privateKey = {
-  key: fs.readFileSync("./keys/private_key.pem"),
+  key: fs.readFileSync("../keys/private_key.pem"),
   passphrase: "brocal",
 };
 // sign the data with the private key
@@ -21,10 +22,10 @@ const signature = crypto
   .sign(privateKey, "base64");
 
 // if no encoding is specified, then the result is returned as a Buffer
-const publicKey = fs.readFileSync("./keys/public_key.pem", "utf8");
+const publicKey = fs.readFileSync("../keys/public_key.pem", "utf8");
 
 // read the api key from a file
-const apiKey = fs.readFileSync("./keys/api_key.txt", "utf8");
+const apiKey = fs.readFileSync("../keys/api_key.txt", "utf8");
 
 // data to send to the remote verifySignature function
 const postData = {
@@ -38,8 +39,7 @@ const headers = {
   "x-api-key": apiKey,
 };
 
-
-// test remote /signature-verify function
+// call /signature-verify endpoint
 axios
   .post(url, postData, {
     headers: headers
@@ -52,7 +52,7 @@ axios
   });
 
 
-// // test local verifySignature function
+// ********* test local verifySignature function *********
 // const isValid = verifySignature(data, publicKey, signature);
 // console.log(`Signature is ${isValid ? "valid" : "invalid"}`);
 
